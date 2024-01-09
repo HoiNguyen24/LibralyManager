@@ -12,6 +12,8 @@ public class MainRun {
     static ManagerBook managerBook = new ManagerBook();
 
     public static void main(String[] args) {
+        managerAccount.readRole();
+        managerAccount.readAccount();
         while (true) {
             System.out.println("Xin chào");
             System.out.println("1. Login");
