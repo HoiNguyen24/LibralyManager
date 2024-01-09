@@ -2,6 +2,7 @@ package manager;
 
 import model.Book;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class ManagerBook {
 
     public void addBook(Book book) {
         books.add(book);
+        writeBook();
     }
 
     public void display() {
@@ -75,5 +77,32 @@ public class ManagerBook {
             }
         }
         return -1;
+    }
+    public void readBook(){
+        try {
+            File fileBook = new File("books.txt");
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileBook));
+            String str = null;
+            while((str = bufferedReader.readLine()) != null){
+                String[] arr = str.split(",");
+                addBook(new Book(arr[0],arr[1],arr[2]));
+            }
+        }catch (Exception e){
+            System.out.println("Lỗi đọc file books");
+        }
+    }
+    public void writeBook(){
+        try{
+            File fileBook = new File("books.txt");
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileBook));
+            for(Book book: this.books){
+                bufferedWriter.write(book.getName()+","+book.getCategory()+","+book.getAuthor());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Lỗi nhập sách");
+        }
     }
 }

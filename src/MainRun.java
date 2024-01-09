@@ -14,6 +14,7 @@ public class MainRun {
     public static void main(String[] args) {
         managerAccount.readRole();
         managerAccount.readAccount();
+        managerBook.readBook();
         while (true) {
             System.out.println("Xin chào");
             System.out.println("1. Login");
@@ -24,8 +25,7 @@ public class MainRun {
                     login();
                     break;
                 case 2:
-                    Account account = managerAccount.create();
-                    managerAccount.add(account);
+                    managerAccount.create();
                     break;
                 default:
                     System.err.println("Nhập sai");
